@@ -151,17 +151,54 @@ std::cout << a[0] << b[0];
 Исправьте исходную программу, чтобы ускорить ее работу. Изменения не должны 
 затрагивать общий вид программы (присваивания, использование временной переменной).*
 
+int main() {
+    std::string a(100000, 'a');
+    std::string b(100000, 'b');
+
+    for (int i = 0; i < 1000000; i++) {
+        std::string c(a);
+        a = b;
+        b = c;
+    }
+
+    std::cout << a[0] << b[0];
+}
+
 <img width="568" height="352" alt="image" src="https://github.com/user-attachments/assets/5e015544-a120-48c1-a153-ec0564c84344" />
 
 В исходном варианте строки обмениваются значениями с помощью временной переменной c. При этом создаются копии строк длиной 100000 символов. Поскольку обмен выполняется миллион раз, копирование требует значительного времени.
 
 Использование swap:
 
+int main() {
+    std::string a(100000, 'a');
+    std::string b(100000, 'b');
+
+    for (int i = 0; i < 1000000; i++) {
+        a.swap(b);
+    }
+
+    std::cout << a[0] << b[0];
+}
+
 <img width="574" height="366" alt="image" src="https://github.com/user-attachments/assets/829d5303-fe98-46e4-875e-87b1c1743db5" />
 
 Функция swap обменивает внутренние данные строк без копирования всех их символов, поэтому работает значительно быстрее.
 
 Сохранить первоначальную структуру программы, но использовать перемещение:
+
+int main() {
+    std::string a(100000, 'a');
+    std::string b(100000, 'b');
+
+    for (int i = 0; i < 1000000; i++) {
+        std::string c(std::move(a));
+        a = std::move(b);
+        b = std::move(c);
+    }
+
+    std::cout << a[0] << b[0];
+}
 
 <img width="598" height="422" alt="image" src="https://github.com/user-attachments/assets/f798ef8b-515f-4597-8f8a-86c92bab16c1" />
 
@@ -204,9 +241,11 @@ print(b, id(b))
 ```b = a[:]```
 *Напишите программу для демонстрации различий.*
 
+a = 'Happy'
+b = a
+c = a[:]
 print(a == b)
 print(a == c)
-
 print(a is b)
 print(a is c)
 
@@ -223,6 +262,17 @@ print(a is c)
 *Напишите программу на языке* **Python**, *которая создаст 2600 переменных с именами
 от* **a0** *до* **a99**, *от* **b0** *до* **b99** *и так далее, от* **z0** *до* **z99**. 
 *Присвойте всем переменным различные значения от 1 до 2600.*
+
+n = 1
+
+for letter in 'abcdefghijklmnopqrstuvwxyz':
+    for i in range(100):
+        globals()[letter + str(i)] = n
+        n += 1
+
+print(a0, a99)
+print(b0, b99)
+print(z0, z99)
 
 <img width="537" height="268" alt="image" src="https://github.com/user-attachments/assets/e0c413e5-01b8-44c4-ad08-1d5f9e48b5e7" />
 
