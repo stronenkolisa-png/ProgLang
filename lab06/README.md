@@ -151,6 +151,7 @@ std::cout << a[0] << b[0];
 Исправьте исходную программу, чтобы ускорить ее работу. Изменения не должны 
 затрагивать общий вид программы (присваивания, использование временной переменной).*
 
+```
 int main() {
     std::string a(100000, 'a');
     std::string b(100000, 'b');
@@ -163,6 +164,7 @@ int main() {
 
     std::cout << a[0] << b[0];
 }
+```
 
 <img width="568" height="352" alt="image" src="https://github.com/user-attachments/assets/5e015544-a120-48c1-a153-ec0564c84344" />
 
@@ -170,6 +172,7 @@ int main() {
 
 Использование swap:
 
+```
 int main() {
     std::string a(100000, 'a');
     std::string b(100000, 'b');
@@ -180,6 +183,7 @@ int main() {
 
     std::cout << a[0] << b[0];
 }
+```
 
 <img width="574" height="366" alt="image" src="https://github.com/user-attachments/assets/829d5303-fe98-46e4-875e-87b1c1743db5" />
 
@@ -187,6 +191,7 @@ int main() {
 
 Сохранить первоначальную структуру программы, но использовать перемещение:
 
+```
 int main() {
     std::string a(100000, 'a');
     std::string b(100000, 'b');
@@ -199,6 +204,7 @@ int main() {
 
     std::cout << a[0] << b[0];
 }
+```
 
 <img width="598" height="422" alt="image" src="https://github.com/user-attachments/assets/f798ef8b-515f-4597-8f8a-86c92bab16c1" />
 
