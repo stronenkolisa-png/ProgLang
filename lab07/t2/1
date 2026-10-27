@@ -1,0 +1,8 @@
+#include <iostream>
+int main(){
+int x, y, z;
+++x;
+z += 2 * x +3 * y;
+++y;
+std::cout<<x<<" "<<y<<" "<<z;
+}
